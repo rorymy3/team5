@@ -6,7 +6,7 @@ using System;
 public class Kick : MonoBehaviour
 {
     private Transform player;
-    private Collider2D playerCol;
+    private Collider2D col;
     private Collider2D kickZone;
     private GameObject arrow;
     private SpriteRenderer arrowArt;
@@ -28,9 +28,9 @@ public class Kick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerCol = GameObject.Find("Player").GetComponent<Collider2D>();
+        col = GetComponent<Collider2D>();
         player = GameObject.Find("Player").transform;
-        kickZone = transform.Find("Kick Zone").gameObject.GetComponent<Collider2D>();
+        kickZone = player.Find("Kick Zone").gameObject.GetComponent<Collider2D>();
         arrow = transform.Find("Arrow").gameObject;
         arrowArt = arrow.transform.GetChild(0).GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         arrowArt.enabled = false;
@@ -41,13 +41,9 @@ public class Kick : MonoBehaviour
     void Update()
     {
         dist = transform.position - player.position;
-
-        // float angle = Vector3.Angle(transform.position, player.position);
-        // Debug.Log(angle);
-
         arrow.transform.right = -(player.position - transform.position);
 
-        if(playerCol.IsTouching(kickZone))
+        if(col.IsTouching(kickZone))
         {
             ableToKick = true;
             arrowArt.color = on;
@@ -90,7 +86,7 @@ public class Kick : MonoBehaviour
 
     void KickBall(float speed)
     {
-        Debug.Log("Kicked with speed of " + kickSpeed);
+        // Debug.Log("Kicked with speed of " + kickSpeed);
         rb.AddForce(dist * kickSpeed, ForceMode2D.Impulse);
     }
 }

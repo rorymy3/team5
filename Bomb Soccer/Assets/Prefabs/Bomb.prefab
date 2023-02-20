@@ -146,7 +146,7 @@ Transform:
   m_Children:
   - {fileID: 1300666453994260602}
   m_Father: {fileID: 7112223327144672347}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7112223327134704268
 GameObject:
@@ -220,7 +220,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 1adc6b81170ad407ebafd269f4b79569, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -266,7 +266,6 @@ Transform:
   m_Children:
   - {fileID: 7112223327134704269}
   - {fileID: 5967528296072669993}
-  - {fileID: 2152649672562940869}
   - {fileID: 2887870215110613713}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -301,7 +300,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 7112223327144672348}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8c9c7b319bdf34a66b6d6a27a3ddea1c, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -337,54 +336,6 @@ MonoBehaviour:
   off: {r: 1, g: 1, b: 1, a: 0.27450982}
   on: {r: 1, g: 1, b: 1, a: 1}
   dist: {x: 0, y: 0, z: 0}
---- !u!1 &7635362083644124963
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2152649672562940869}
-  - component: {fileID: 4578063150932055464}
-  m_Layer: 0
-  m_Name: Kick Zone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2152649672562940869
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7635362083644124963}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7112223327144672347}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &4578063150932055464
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7635362083644124963}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.75
 --- !u!1 &8817582006223294409
 GameObject:
   m_ObjectHideFlags: 0

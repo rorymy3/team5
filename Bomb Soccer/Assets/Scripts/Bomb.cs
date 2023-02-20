@@ -18,19 +18,25 @@ public class Bomb : MonoBehaviour
     {
         if(col.tag == "Defuse")
         {
-            StartCoroutine(Defuse());
+            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            GetComponent<Rigidbody2D>().angularVelocity = 0f;
+            Vector3 pos = col.gameObject.transform.position;
+            StartCoroutine(Defuse(pos));
         }
     }
 
-    IEnumerator Defuse()
+    IEnumerator Defuse(Vector3 pos)
     {
         sparks.SetActive(false);
         float scale = gameObject.transform.localScale.x;
         float shrink = scale / 30;
+        Vector3 dist = pos - gameObject.transform.position;
+        Vector3 move = dist / 30;
         for(int i = 0; i < 30; i++)
         {
             scale -= shrink;
             gameObject.transform.localScale = new Vector2(scale, scale);
+            gameObject.transform.position += move;
             yield return new WaitForSeconds(0.01f);
         }
     }
