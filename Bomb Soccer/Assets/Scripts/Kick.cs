@@ -16,7 +16,7 @@ public class Kick : MonoBehaviour
 
     bool ableToKick = false;
     bool buildKick = false;
-    float kickSpeed = 0f;
+    public float kickSpeed = 0f;
     int kickTime = 0;
 
     public Color off;
@@ -80,7 +80,7 @@ public class Kick : MonoBehaviour
         if(buildKick)
         {
             kickTime++;
-            kickSpeed = Mathf.Log(kickTime) * 5f;
+            kickSpeed = Mathf.Log(kickTime) * 50f;
         }
     }
 
