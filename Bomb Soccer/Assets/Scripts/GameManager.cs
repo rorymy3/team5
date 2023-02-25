@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject bombSpawner;
 
+    bool started = false;
+
     void Awake()
     {
         if (manager == null) {
@@ -30,8 +32,12 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel()
     {
-        player.GetComponent<PlayerMovement>().StartLevel();
-        bombSpawner.GetComponent<BombSpawner>().StartLevel();
+        if(!started)
+        {
+            started = true;
+            player.GetComponent<PlayerMovement>().StartLevel();
+            bombSpawner.GetComponent<BombSpawner>().StartLevel();
+        }
     }
 
     void NextScene()
