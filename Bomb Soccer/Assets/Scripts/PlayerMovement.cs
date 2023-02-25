@@ -13,12 +13,15 @@ public class PlayerMovement : MonoBehaviour {
         private bool sliding = false;
         private bool startSlide = false;
 
+        private AudioSource _audioSource;
+
         // Auto-load the RigidBody component into the variable:
         void Start(){
             rb = GetComponent<Rigidbody2D> ();
+            _audioSource = GetComponent<AudioSource> ();
         }
 
-        void Update() 
+        void Update()
         {
             if ((Input.GetKey("w") || Input.GetKey("up")) && (Input.GetKey("d") || Input.GetKey("right")))
             {
@@ -42,17 +45,18 @@ public class PlayerMovement : MonoBehaviour {
             }
             movement.x = Input.GetAxisRaw ("Horizontal");
             movement.y = Input.GetAxisRaw ("Vertical");
-            
-            if(Input.GetButtonDown("Fire1"))
+
+            if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
             {
                 sliding = true;
                 startSlide = true;
             }
-            if(Input.GetButtonUp("Fire1"))
+            if(Input.GetButtonUp("Fire1") || Input.GetKeyUp("space"))
             {
                 sliding = false;
                 startSlide = false;
                 rb.velocity = Vector3.zero;
+                _audioSource.Play();
             }
         }
 
