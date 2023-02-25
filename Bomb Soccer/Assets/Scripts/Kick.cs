@@ -13,10 +13,11 @@ public class Kick : MonoBehaviour
     private Rigidbody2D rb;
 
     public float kickRadius = 3f;
+    private AudioSource _audioSource;
 
     bool ableToKick = false;
     bool buildKick = false;
-    public float kickSpeed = 0f;
+    float kickSpeed = 0f;
     int kickTime = 0;
 
     public Color off;
@@ -35,6 +36,7 @@ public class Kick : MonoBehaviour
         arrowArt = arrow.transform.GetChild(0).GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         arrowArt.enabled = false;
         rb = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource> ();
     }
 
     // Update is called once per frame
@@ -58,7 +60,7 @@ public class Kick : MonoBehaviour
             buildKick = true;
             arrowArt.enabled = true;
         }
-        if(Input.GetButtonUp("Fire1") || Input.GetKeyUp("space"))
+        else if(Input.GetButtonUp("Fire1") || Input.GetKeyUp("space"))
         {
             if(ableToKick)
             {
@@ -73,6 +75,11 @@ public class Kick : MonoBehaviour
             buildKick = false;
             arrowArt.enabled = false;
         }
+
+        if (!Input.GetButton("Fire1") && !Input.GetKey("space")) {
+           arrowArt.enabled = false;
+        }
+
     }
 
     void FixedUpdate()
@@ -88,5 +95,6 @@ public class Kick : MonoBehaviour
     {
         // Debug.Log("Kicked with speed of " + kickSpeed);
         rb.AddForce(dist * kickSpeed, ForceMode2D.Impulse);
+        _audioSource.Play();
     }
 }

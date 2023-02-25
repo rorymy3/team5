@@ -13,12 +13,12 @@ public class PlayerMovement : MonoBehaviour {
         private bool sliding = false;
         private bool startSlide = false;
 
-        private AudioSource _audioSource;
+        //private AudioSource _audioSource;
 
         // Auto-load the RigidBody component into the variable:
         void Start(){
             rb = GetComponent<Rigidbody2D> ();
-            _audioSource = GetComponent<AudioSource> ();
+            //_audioSource = GetComponent<AudioSource> ();
         }
 
         void Update()
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour {
                 sliding = false;
                 startSlide = false;
                 rb.velocity = Vector3.zero;
-                _audioSource.Play();
+                //_audioSource.Play();
             }
         }
 
