@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 10.416667
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -6253,17 +6253,18 @@ TextureImporter:
       sheet_64: -1240381159
       sheet_250: 3860343
       sheet_128: -1174733869
+      sheet_245: 670718526
       sheet_155: 2139925622
       sheet_145: 1556158124
       sheet_44: 45807793
-      sheet_75: 921037946
       sheet_29: -1091957850
-      sheet_148: 1545956010
+      sheet_75: 921037946
       sheet_138: -1453291292
-      sheet_183: -843632254
+      sheet_148: 1545956010
       sheet_13: -1736570811
-      sheet_88: 473229919
+      sheet_183: -843632254
       sheet_205: -422509173
+      sheet_88: 473229919
       sheet_142: -1305362762
       sheet_234: 290006777
       sheet_156: 472414475
@@ -6278,7 +6279,6 @@ TextureImporter:
       sheet_96: -864678311
       sheet_269: 1038560197
       sheet_189: -927887150
-      sheet_245: 670718526
       sheet_182: 630190454
       sheet_26: -1068839688
       sheet_289: 852482481
@@ -6286,11 +6286,11 @@ TextureImporter:
       sheet_14: 68915578
       sheet_93: 1555827683
       sheet_255: -1606203010
-      sheet_53: -1369917081
       sheet_99: 1796042139
       sheet_176: 602033433
-      sheet_261: -1006152832
       sheet_259: -1569159165
+      sheet_53: -1369917081
+      sheet_261: -1006152832
       sheet_141: -1857476872
       sheet_69: 230627840
       sheet_268: 1334903036
