@@ -5,12 +5,25 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     public GameObject sparks;
+    public GameObject circle;
+    public float time;
+
+    private Vector3 fullCircle;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.SetActive(true);
         sparks.SetActive(true);
+        fullCircle = circle.transform.localScale;
+        circle.SetActive(false);
+        // Remove once GameManager is created
+        StartLevel();
+    }
+
+    public void StartLevel()
+    {
+        StartCoroutine(Countdown());
     }
 
     // Update is called once per frame
@@ -39,5 +52,19 @@ public class Bomb : MonoBehaviour
             gameObject.transform.position += move;
             yield return new WaitForSeconds(0.01f);
         }
+    }
+
+    IEnumerator Countdown()
+    {
+        float timeDiv = time / 100;
+        circle.SetActive(true);
+        circle.transform.localScale = new Vector3(0,0,0);
+        Vector3 scaleChange = fullCircle / 100;
+        for(int i = 0; i < 100; i++)
+        {
+            circle.transform.localScale += scaleChange;
+            yield return new WaitForSeconds(timeDiv);
+        }
+        Debug.Log("Boom");
     }
 }

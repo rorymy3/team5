@@ -16,7 +16,7 @@ public class Kick : MonoBehaviour
 
     bool ableToKick = false;
     bool buildKick = false;
-    float kickSpeed = 0f;
+    public float kickSpeed = 0f;
     int kickTime = 0;
 
     public Color off;
@@ -24,7 +24,7 @@ public class Kick : MonoBehaviour
 
     // distance between player and object.
     public Vector3 dist;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,12 +53,12 @@ public class Kick : MonoBehaviour
             ableToKick = false;
             arrowArt.color = off;
         }
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
         {
             buildKick = true;
             arrowArt.enabled = true;
         }
-        if(Input.GetButtonUp("Fire1"))
+        if(Input.GetButtonUp("Fire1") || Input.GetKeyUp("space"))
         {
             if(ableToKick)
             {
@@ -80,7 +80,7 @@ public class Kick : MonoBehaviour
         if(buildKick)
         {
             kickTime++;
-            kickSpeed = Mathf.Log(kickTime) * 5f;
+            kickSpeed = Mathf.Log(kickTime) * 50f;
         }
     }
 
