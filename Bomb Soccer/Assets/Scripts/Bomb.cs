@@ -8,6 +8,8 @@ public class Bomb : MonoBehaviour
     public GameObject circle;
     public float time;
 
+    private Coroutine c;
+
     private Vector3 fullCircle;
 
     // Start is called before the first frame update
@@ -17,13 +19,11 @@ public class Bomb : MonoBehaviour
         sparks.SetActive(true);
         fullCircle = circle.transform.localScale;
         circle.SetActive(false);
-        // Remove once GameManager is created
-        StartLevel();
     }
 
     public void StartLevel()
     {
-        StartCoroutine(Countdown());
+        c = StartCoroutine(Countdown());
     }
 
     // Update is called once per frame
@@ -34,6 +34,7 @@ public class Bomb : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             GetComponent<Rigidbody2D>().angularVelocity = 0f;
             Vector3 pos = col.gameObject.transform.position;
+            StopCoroutine(c);
             StartCoroutine(Defuse(pos));
         }
     }

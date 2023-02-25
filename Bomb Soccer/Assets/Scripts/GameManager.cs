@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager manager;
     int sceneNum;
 
+    public GameObject player;
+    public GameObject bombSpawner;
+
     void Awake()
     {
         if (manager == null) {
@@ -21,11 +24,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         sceneNum = 0;
+        player = GameObject.Find("Player");
+        bombSpawner = GameObject.Find("Bomb Spawner");
     }
 
-    void Update()
+    public void StartLevel()
     {
-
+        player.GetComponent<PlayerMovement>().StartLevel();
+        bombSpawner.GetComponent<BombSpawner>().StartLevel();
     }
 
     void NextScene()

@@ -9,10 +9,15 @@ public class Timer : MonoBehaviour
     public GameObject two;
     public GameObject one;
 
+    public GameManager gm;
+
+    private Coroutine cd;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(LevelCountdown());
+        cd = StartCoroutine(LevelCountdown());
+        gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -20,11 +25,11 @@ public class Timer : MonoBehaviour
     {
         if(Input.GetButton("Fire1"))
         {
-            StopCoroutine(LevelCountdown());
+            StopCoroutine(cd);
             three.SetActive(false);
             two.SetActive(false);
             one.SetActive(false);
-            //GameManager.StartLevel();
+            gm.StartLevel();
         }
     }
 
@@ -39,6 +44,6 @@ public class Timer : MonoBehaviour
         one.SetActive(true);
         yield return new WaitForSeconds(1f);
         one.SetActive(false);
-        //GameManager.StartLevel();
+        gm.StartLevel();
     }
 }

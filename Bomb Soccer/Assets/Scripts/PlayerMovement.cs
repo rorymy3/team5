@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 
         private bool sliding = false;
         private bool startSlide = false;
+        private bool canMove = false;
 
         //private AudioSource _audioSource;
 
@@ -19,61 +20,73 @@ public class PlayerMovement : MonoBehaviour {
         void Start(){
             rb = GetComponent<Rigidbody2D> ();
             //_audioSource = GetComponent<AudioSource> ();
+            canMove = false;
+        }
+
+        public void StartLevel()
+        {
+            canMove = true;
         }
 
         void Update()
         {
-            if ((Input.GetKey("w") || Input.GetKey("up")) && (Input.GetKey("d") || Input.GetKey("right")))
+            if(canMove)
             {
-                moveSpeed = halfSpeed;
-            }
-            else if ((Input.GetKey("w") || Input.GetKey("up")) && (Input.GetKey("a") || Input.GetKey("left")))
-            {
-                moveSpeed = halfSpeed;
-            }
-            else if ((Input.GetKey("s") || Input.GetKey("down")) && (Input.GetKey("d") || Input.GetKey("right")))
-            {
-                moveSpeed = halfSpeed;
-            }
-            else if ((Input.GetKey("s") || Input.GetKey("down")) && (Input.GetKey("a") || Input.GetKey("left")))
-            {
-                moveSpeed = halfSpeed;
-            }
-            else
-            {
-                moveSpeed = fullSpeed;
-            }
-            movement.x = Input.GetAxisRaw ("Horizontal");
-            movement.y = Input.GetAxisRaw ("Vertical");
+                if ((Input.GetKey("w") || Input.GetKey("up")) && (Input.GetKey("d") || Input.GetKey("right")))
+                {
+                    moveSpeed = halfSpeed;
+                }
+                else if ((Input.GetKey("w") || Input.GetKey("up")) && (Input.GetKey("a") || Input.GetKey("left")))
+                {
+                    moveSpeed = halfSpeed;
+                }
+                else if ((Input.GetKey("s") || Input.GetKey("down")) && (Input.GetKey("d") || Input.GetKey("right")))
+                {
+                    moveSpeed = halfSpeed;
+                }
+                else if ((Input.GetKey("s") || Input.GetKey("down")) && (Input.GetKey("a") || Input.GetKey("left")))
+                {
+                    moveSpeed = halfSpeed;
+                }
+                else
+                {
+                    moveSpeed = fullSpeed;
+                }
+                movement.x = Input.GetAxisRaw ("Horizontal");
+                movement.y = Input.GetAxisRaw ("Vertical");
 
-            if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
-            {
-                sliding = true;
-                startSlide = true;
-            }
-            if(Input.GetButtonUp("Fire1") || Input.GetKeyUp("space"))
-            {
-                sliding = false;
-                startSlide = false;
-                rb.velocity = Vector3.zero;
-                //_audioSource.Play();
+                if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
+                {
+                    sliding = true;
+                    startSlide = true;
+                }
+                if(Input.GetButtonUp("Fire1") || Input.GetKeyUp("space"))
+                {
+                    sliding = false;
+                    startSlide = false;
+                    rb.velocity = Vector3.zero;
+                    //_audioSource.Play();
+                }
             }
         }
 
         // Listen for player input to move the object:
         void FixedUpdate()
         {
-            if(sliding)
+            if(canMove)
             {
-                if(startSlide)
+                if(sliding)
                 {
-                    rb.AddForce(movement * moveSpeed * 1000 * Time.fixedDeltaTime);
-                    startSlide = false;
+                    if(startSlide)
+                    {
+                        rb.AddForce(movement * moveSpeed * 1000 * Time.fixedDeltaTime);
+                        startSlide = false;
+                    }
                 }
-            }
-            else
-            {
-                rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+                else
+                {
+                    rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+                }
             }
         }
 
