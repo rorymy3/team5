@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public GameObject bombSpawner;
+    private AudioSource _audioSource;
 
     bool checkRestart = false;
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        _audioSource = GetComponent<AudioSource> ();
         sceneNum = 0;
         player = GameObject.Find("Player");
         bombSpawner = GameObject.Find("Bomb Spawner");
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerMovement>().GameOver();
             bombSpawner.GetComponent<BombSpawner>().GameOver();
             checkRestart = true;
+            _audioSource.Play();
         }
     }
 
