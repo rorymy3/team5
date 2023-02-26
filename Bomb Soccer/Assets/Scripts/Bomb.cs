@@ -6,7 +6,13 @@ public class Bomb : MonoBehaviour
 {
     public GameObject sparks;
     public GameObject circle;
+    public GameObject bombArt;
+    public GameObject bombOverlay;
+    public GameObject craterArt;
+    public GameManager gm;
+    public ParticleSystem explosion;
     public float time;
+    private bool exploded = false;
 
     private Coroutine c;
 
@@ -19,11 +25,21 @@ public class Bomb : MonoBehaviour
         sparks.SetActive(true);
         fullCircle = circle.transform.localScale;
         circle.SetActive(false);
+        exploded = false;
+        gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     public void StartLevel()
     {
         c = StartCoroutine(Countdown());
+    }
+
+    public void GameOver()
+    {
+        if(!exploded)
+        {
+            StopCoroutine(c);
+        }
     }
 
     // Update is called once per frame
@@ -66,6 +82,13 @@ public class Bomb : MonoBehaviour
             circle.transform.localScale += scaleChange;
             yield return new WaitForSeconds(timeDiv);
         }
-        Debug.Log("Boom");
+        bombArt.SetActive(false);
+        bombOverlay.SetActive(false);
+        craterArt.SetActive(true);
+        exploded = true;
+        gm.GameOver();
+        explosion.Play();
+        yield return new WaitForSeconds(9f);
+        explosion.Pause();
     }
 }

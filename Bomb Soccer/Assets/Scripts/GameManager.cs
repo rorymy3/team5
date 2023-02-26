@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager manager;
     int sceneNum;
+    public GameObject gameOver;
 
     public GameObject player;
     public GameObject bombSpawner;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
         sceneNum = 0;
         player = GameObject.Find("Player");
         bombSpawner = GameObject.Find("Bomb Spawner");
+        gameOver = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
     }
 
     public void StartLevel()
@@ -38,6 +40,13 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerMovement>().StartLevel();
             bombSpawner.GetComponent<BombSpawner>().StartLevel();
         }
+    }
+
+    public void GameOver()
+    {
+        gameOver.SetActive(true);
+        player.GetComponent<PlayerMovement>().GameOver();
+        bombSpawner.GetComponent<BombSpawner>().GameOver();
     }
 
     void NextScene()

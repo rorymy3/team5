@@ -22,6 +22,16 @@ public class BombSpawner : MonoBehaviour
         }
     }
 
+    // Start is called before the first frame update
+    public void GameOver()
+    {
+        for(int i = 0; i < bombCount; i++)
+        {
+            Bomb curr = gameObject.transform.GetChild(i).GetComponent<Bomb>();
+            curr.GameOver();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
         public float halfSpeed = 3.535f;
         public float fullSpeed = 5f;
         public Vector2 movement;
+        public Animator anim;
 
         private bool sliding = false;
         private bool startSlide = false;
@@ -26,6 +27,12 @@ public class PlayerMovement : MonoBehaviour {
         public void StartLevel()
         {
             canMove = true;
+        }
+
+        public void GameOver()
+        {
+            canMove = false;
+            anim.enabled = false;
         }
 
         void Update()
