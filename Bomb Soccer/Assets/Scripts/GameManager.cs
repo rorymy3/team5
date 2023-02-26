@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject bombSpawner;
 
+    bool checkRestart = false;
+
     bool started = false;
+    bool ended = false;
 
     void Awake()
     {
@@ -30,12 +33,16 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
         bombSpawner = GameObject.Find("Bomb Spawner");
         gameOver = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
+        started = false;
+        ended = false;
     }
 
     public void StartLevel()
     {
         if(!started)
         {
+            player = GameObject.Find("Player");
+            bombSpawner = GameObject.Find("Bomb Spawner");
             started = true;
             player.GetComponent<PlayerMovement>().StartLevel();
             bombSpawner.GetComponent<BombSpawner>().StartLevel();
@@ -44,9 +51,33 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        gameOver.SetActive(true);
-        player.GetComponent<PlayerMovement>().GameOver();
-        bombSpawner.GetComponent<BombSpawner>().GameOver();
+        if(!ended)
+        {
+            ended = true;
+            gameOver.SetActive(true);
+            player.GetComponent<PlayerMovement>().GameOver();
+            bombSpawner.GetComponent<BombSpawner>().GameOver();
+            checkRestart = true;
+        }
+    }
+
+    void Update()
+    {
+        if(checkRestart)
+        {
+            if(Input.GetButton("Fire1") || Input.GetKey("space"))
+            {
+                checkRestart = false;
+                RestartScene();
+            }
+        }
+    }
+
+    void RestartScene()
+    {
+        SceneManager.LoadScene(sceneNum);
+        started = false;
+        ended = false;
     }
 
     void NextScene()

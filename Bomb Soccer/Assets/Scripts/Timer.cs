@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
     private Coroutine cd;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         cd = StartCoroutine(LevelCountdown());
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -44,6 +44,10 @@ public class Timer : MonoBehaviour
         one.SetActive(true);
         yield return new WaitForSeconds(1f);
         one.SetActive(false);
+        Debug.Log("Before gm find");
+        gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        Debug.Log("After gm find");
         gm.StartLevel();
+        Debug.Log("After gm call");
     }
 }
