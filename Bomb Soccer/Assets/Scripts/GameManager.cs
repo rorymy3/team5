@@ -63,6 +63,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //delete this quit functionality when a Pause Menu is added
+        if (Input.GetKey("escape")){
+            QuitGame();
+        }
+
         if(checkRestart)
         {
             if(Input.GetButton("Fire1") || Input.GetKey("space"))
@@ -84,5 +89,13 @@ public class GameManager : MonoBehaviour
     {
         sceneNum++;
         SceneManager.LoadScene(sceneNum);
+    }
+
+    public void QuitGame(){
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
     }
 }
