@@ -15,12 +15,16 @@ public class PlayerMovement : MonoBehaviour {
         private bool startSlide = false;
         private bool canMove = false;
 
-        //private AudioSource _audioSource;
+        // https://answers.unity.com/questions/52017/2-audio-sources-on-a-game-object-how-use-script-to.html
+        public AudioSource step1Audio;
+        public AudioSource step2Audio;
+        public AudioSource step3Audio;
+        public AudioSource step4Audio;
+        private int nextUpdate = 1;
 
         // Auto-load the RigidBody component into the variable:
         void Start(){
             rb = GetComponent<Rigidbody2D> ();
-            //_audioSource = GetComponent<AudioSource> ();
             canMove = false;
         }
 
@@ -61,6 +65,7 @@ public class PlayerMovement : MonoBehaviour {
                 }
                 movement.x = Input.GetAxisRaw ("Horizontal");
                 movement.y = Input.GetAxisRaw ("Vertical");
+                MoveSoundUpdate();
 
                 if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
                 {
@@ -76,6 +81,31 @@ public class PlayerMovement : MonoBehaviour {
                 }
             }
         }
+
+        void MoveSoundUpdate(){
+          // Code for footstep sounds
+          // If the next update is reached
+          if(Time.time >= nextUpdate){
+             // Change the next update (current second+1)
+             nextUpdate=Mathf.FloorToInt(Time.time)+1;
+             // Call your fonction
+             UpdateEverySecond();
+          }
+        }
+
+        // Update is called once per second
+       void UpdateEverySecond(){
+            if (nextUpdate % 4 == 0) {
+                //Debug.Log($"AudioSource is {step1Audio.enabled ? "enabled" : "disabled!"}", this);
+                step1Audio.Play();
+            } else if (nextUpdate % 4 == 1) {
+                step2Audio.Play();
+            } else if (nextUpdate % 4 == 2) {
+                step3Audio.Play();
+            } else if (nextUpdate % 4 == 3) {
+                step4Audio.Play();
+            }
+       }
 
         // Listen for player input to move the object:
         void FixedUpdate()
