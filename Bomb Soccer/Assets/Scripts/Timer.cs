@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     public GameObject two;
     public GameObject one;
 
-    public GameManager gm;
+    public static GameManager gm;
 
     private Coroutine cd;
 
@@ -44,10 +44,7 @@ public class Timer : MonoBehaviour
         one.SetActive(true);
         yield return new WaitForSeconds(1f);
         one.SetActive(false);
-        Debug.Log("Before gm find");
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        Debug.Log("After gm find");
         gm.StartLevel();
-        Debug.Log("After gm call");
     }
 }

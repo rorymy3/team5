@@ -240,7 +240,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: 866cc044bb66d4d13a1c40ec4c64bb29, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -497,7 +497,6 @@ MonoBehaviour:
   bombArt: {fileID: 7112223327134704268}
   bombOverlay: {fileID: 8263549167054657087}
   craterArt: {fileID: 5159985590629714996}
-  gm: {fileID: 0}
   explosion: {fileID: 167289740573369466}
   time: 10
 --- !u!114 &120399022943362075

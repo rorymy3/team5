@@ -9,7 +9,8 @@ public class Bomb : MonoBehaviour
     public GameObject bombArt;
     public GameObject bombOverlay;
     public GameObject craterArt;
-    public GameManager gm;
+    public AudioManager am;
+    public static GameManager gm;
     public ParticleSystem explosion;
     public float time;
     private bool exploded = false;
@@ -27,6 +28,7 @@ public class Bomb : MonoBehaviour
         circle.SetActive(false);
         exploded = false;
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        am = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
     }
 
     public void StartLevel()
@@ -84,10 +86,12 @@ public class Bomb : MonoBehaviour
         }
         bombArt.SetActive(false);
         bombOverlay.SetActive(false);
+        sparks.SetActive(false);
         craterArt.SetActive(true);
         exploded = true;
         gm.GameOver();
         explosion.Play();
+        am.Play("Explosion");
         yield return new WaitForSeconds(9f);
         explosion.Pause();
     }

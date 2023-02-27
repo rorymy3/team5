@@ -95,16 +95,16 @@ public class PlayerMovement : MonoBehaviour {
 
         // Update is called once per second
        void UpdateEverySecond(){
-            if (nextUpdate % 4 == 0) {
-                //Debug.Log($"AudioSource is {step1Audio.enabled ? "enabled" : "disabled!"}", this);
-                step1Audio.Play();
-            } else if (nextUpdate % 4 == 1) {
-                step2Audio.Play();
-            } else if (nextUpdate % 4 == 2) {
-                step3Audio.Play();
-            } else if (nextUpdate % 4 == 3) {
-                step4Audio.Play();
-            }
+            // if (nextUpdate % 4 == 0) {
+            //     //Debug.Log($"AudioSource is {step1Audio.enabled ? "enabled" : "disabled!"}", this);
+            //     step1Audio.Play();
+            // } else if (nextUpdate % 4 == 1) {
+            //     step2Audio.Play();
+            // } else if (nextUpdate % 4 == 2) {
+            //     step3Audio.Play();
+            // } else if (nextUpdate % 4 == 3) {
+            //     step4Audio.Play();
+            // }
        }
 
         // Listen for player input to move the object:

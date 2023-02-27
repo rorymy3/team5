@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource> ();
+        _audioSource = GetComponent<AudioSource>();
         sceneNum = 0;
         player = GameObject.Find("Player");
         bombSpawner = GameObject.Find("Bomb Spawner");
@@ -56,11 +56,15 @@ public class GameManager : MonoBehaviour
         if(!ended)
         {
             ended = true;
+            gameOver = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
             gameOver.SetActive(true);
+            player = GameObject.Find("Player");
+            bombSpawner = GameObject.Find("Bomb Spawner");
+            bombSpawner = GameObject.Find("Bomb Spawner");
             player.GetComponent<PlayerMovement>().GameOver();
             bombSpawner.GetComponent<BombSpawner>().GameOver();
             checkRestart = true;
-            _audioSource.Play();
+            //_audioSource.Play();
         }
     }
 
