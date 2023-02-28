@@ -50,11 +50,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  sr: {fileID: 0}
   moveSpeed: 5
   halfSpeed: 3.535
-  fullSpeed: 5
+  fullSpeed: 6
   movement: {x: 0, y: 0}
   anim: {fileID: 7426239893637776310}
+  canMove: 0
   step1Audio: {fileID: 0}
   step2Audio: {fileID: 0}
   step3Audio: {fileID: 0}

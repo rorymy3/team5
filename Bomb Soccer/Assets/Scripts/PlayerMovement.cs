@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour {
             rb = GetComponent<Rigidbody2D> ();
             sr = transform.Find("Player Art").gameObject.GetComponent<SpriteRenderer>();
             canMove = false;
+            halfSpeed = Mathf.Sqrt((fullSpeed * fullSpeed)/2f);
         }
 
         public void StartLevel()

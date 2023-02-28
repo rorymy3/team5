@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour
     private Coroutine cd;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         cd = StartCoroutine(LevelCountdown());
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
