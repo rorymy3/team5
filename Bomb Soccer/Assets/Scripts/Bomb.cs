@@ -11,6 +11,7 @@ public class Bomb : MonoBehaviour
     public GameObject craterArt;
     public Rigidbody2D rb;
     public AudioManager am;
+    public AudioManager mm;
     public static GameManager gm;
     public Kick kickScript;
     public ParticleSystem explosion;
@@ -32,6 +33,7 @@ public class Bomb : MonoBehaviour
         exploded = false;
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
         am = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
+        mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         kickScript = GetComponent<Kick>();
         count = 1;
@@ -103,6 +105,9 @@ public class Bomb : MonoBehaviour
         gm.GameOver();
         explosion.Play();
         am.Play("Explosion");
+        mm.Stop("Timer");
+        mm.Stop("Skip Timer");
+        mm.Play("Death");
         yield return new WaitForSeconds(9f);
         explosion.Pause();
     }

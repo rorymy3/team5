@@ -9,6 +9,9 @@ public class Timer : MonoBehaviour
     public GameObject two;
     public GameObject one;
 
+    public AudioManager mm;
+    bool skipped = false;
+
     public static GameManager gm;
 
     private Coroutine cd;
@@ -18,13 +21,19 @@ public class Timer : MonoBehaviour
     {
         cd = StartCoroutine(LevelCountdown());
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
+        mm.Play("Timer");
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if(Input.GetButton("Fire1"))
+        if(Input.GetButtonDown("Fire1") && !skipped)
         {
+            skipped = true;
+            mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
+            mm.Stop("Timer");
+            mm.Play("Skip Timer");
             StopCoroutine(cd);
             three.SetActive(false);
             two.SetActive(false);
@@ -47,5 +56,6 @@ public class Timer : MonoBehaviour
         one.SetActive(false);
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
         gm.StartLevel();
+        skipped = true;
     }
 }

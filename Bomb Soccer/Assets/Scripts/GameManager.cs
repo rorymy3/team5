@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     int sceneNum;
     public GameObject gameOver;
     public GameObject levelWin;
+    public AudioManager mm;
 
     public GameObject player;
     public GameObject bombSpawner;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         bombSpawner = GameObject.Find("Bomb Spawner");
         gameOver = GameObject.Find("Canvas").transform.GetChild(1).gameObject;
         levelWin = GameObject.Find("Canvas").transform.GetChild(2).gameObject;
+        mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
         defuseList = GameObject.Find("Defuse List");
         started = false;
         ended = false;
@@ -101,6 +103,8 @@ public class GameManager : MonoBehaviour
             if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
             {
                 checkRestart = false;
+                mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
+                mm.Stop("Death");
                 RestartScene();
             }
         }
