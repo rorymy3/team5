@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
         public Rigidbody2D rb;
+        public SpriteRenderer sr;
         public float moveSpeed = 5f;
         public float halfSpeed = 3.535f;
         public float fullSpeed = 5f;
@@ -13,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 
         private bool sliding = false;
         private bool startSlide = false;
-        private bool canMove = false;
+        public bool canMove = false;
 
         // https://answers.unity.com/questions/52017/2-audio-sources-on-a-game-object-how-use-script-to.html
         public AudioSource step1Audio;
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour {
         // Auto-load the RigidBody component into the variable:
         void Start(){
             rb = GetComponent<Rigidbody2D> ();
+            sr = transform.Find("Player Art").gameObject.GetComponent<SpriteRenderer>();
             canMove = false;
         }
 
@@ -39,33 +41,44 @@ public class PlayerMovement : MonoBehaviour {
             anim.enabled = false;
         }
 
+        public void WinLevel()
+        {
+            canMove = false;
+            anim.enabled = false;
+        }
+
         void Update()
         {
             if(canMove)
             {
-                if ((Input.GetKey("w") || Input.GetKey("up")) && (Input.GetKey("d") || Input.GetKey("right")))
+                movement.x = Input.GetAxisRaw ("Horizontal");
+                movement.y = Input.GetAxisRaw ("Vertical");
+                if(movement.x != 0 && movement.y != 0)
                 {
                     moveSpeed = halfSpeed;
+                    anim.enabled = true;
                 }
-                else if ((Input.GetKey("w") || Input.GetKey("up")) && (Input.GetKey("a") || Input.GetKey("left")))
+                else if(movement.x == 0 && movement.y == 0)
                 {
-                    moveSpeed = halfSpeed;
-                }
-                else if ((Input.GetKey("s") || Input.GetKey("down")) && (Input.GetKey("d") || Input.GetKey("right")))
-                {
-                    moveSpeed = halfSpeed;
-                }
-                else if ((Input.GetKey("s") || Input.GetKey("down")) && (Input.GetKey("a") || Input.GetKey("left")))
-                {
-                    moveSpeed = halfSpeed;
+                    anim.enabled = false;
                 }
                 else
                 {
+                    anim.enabled = true;
                     moveSpeed = fullSpeed;
                 }
-                movement.x = Input.GetAxisRaw ("Horizontal");
-                movement.y = Input.GetAxisRaw ("Vertical");
                 MoveSoundUpdate();
+
+                if(movement.x > 0)
+                {
+                    anim.Play("RightWalk");
+                    sr.flipX = false;
+                }
+                if(movement.x < 0)
+                {
+                    anim.Play("RightWalk");
+                    sr.flipX = true;
+                }
 
                 if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
                 {
@@ -79,6 +92,10 @@ public class PlayerMovement : MonoBehaviour {
                     rb.velocity = Vector3.zero;
                     //_audioSource.Play();
                 }
+            }
+            else
+            {
+                anim.enabled = false;
             }
         }
 

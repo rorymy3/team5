@@ -17,6 +17,7 @@ public class Kick : MonoBehaviour
 
     bool ableToKick = false;
     bool buildKick = false;
+    public bool canMove = false;
     float kickSpeed = 0f;
     int kickTime = 0;
 
@@ -42,44 +43,50 @@ public class Kick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dist = transform.position - player.position;
-        arrow.transform.right = -(player.position - transform.position);
+        if(canMove)
+        {
+            dist = transform.position - player.position;
+            arrow.transform.right = -(player.position - transform.position);
 
-        if(col.IsTouching(kickZone))
-        {
-            ableToKick = true;
-            arrowArt.color = on;
-        }
-        else
-        {
-            ableToKick = false;
-            arrowArt.color = off;
-        }
-        if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
-        {
-            buildKick = true;
-            arrowArt.enabled = true;
-        }
-        else if(Input.GetButtonUp("Fire1") || Input.GetKeyUp("space"))
-        {
-            if(ableToKick)
+            if(col.IsTouching(kickZone))
             {
-                KickBall(kickSpeed);
+                ableToKick = true;
+                arrowArt.color = on;
             }
             else
             {
-                kickSpeed = 0f;
+                ableToKick = false;
+                arrowArt.color = off;
             }
-            kickTime = 0;
-            kickSpeed = 0f;
-            buildKick = false;
+            if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
+            {
+                buildKick = true;
+                arrowArt.enabled = true;
+            }
+            else if(Input.GetButtonUp("Fire1") || Input.GetKeyUp("space"))
+            {
+                if(ableToKick)
+                {
+                    KickBall(kickSpeed);
+                }
+                else
+                {
+                    kickSpeed = 0f;
+                }
+                kickTime = 0;
+                kickSpeed = 0f;
+                buildKick = false;
+                arrowArt.enabled = false;
+            }
+
+            if (!Input.GetButton("Fire1") && !Input.GetKey("space")) {
+            arrowArt.enabled = false;
+            }
+        }
+        else
+        {
             arrowArt.enabled = false;
         }
-
-        if (!Input.GetButton("Fire1") && !Input.GetKey("space")) {
-           arrowArt.enabled = false;
-        }
-
     }
 
     void FixedUpdate()
@@ -87,7 +94,7 @@ public class Kick : MonoBehaviour
         if(buildKick)
         {
             kickTime++;
-            kickSpeed = Mathf.Log(kickTime) * 50f;
+            kickSpeed = Mathf.Log(kickTime * 1.5f) * 50f;
         }
     }
 

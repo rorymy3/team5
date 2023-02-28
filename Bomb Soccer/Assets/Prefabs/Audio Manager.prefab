@@ -55,3 +55,23 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: Step1
+    clip: {fileID: 8300000, guid: d808d3690576a4386b29198e8a4e3d1d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Step2
+    clip: {fileID: 8300000, guid: 30992c76250bb4b46b4c4b6c71044f19, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Step3
+    clip: {fileID: 8300000, guid: b019ccee4168b423490ec721ff1ca1b9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Step4
+    clip: {fileID: 8300000, guid: 61ac42011ac8745a295839633666a8d7, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

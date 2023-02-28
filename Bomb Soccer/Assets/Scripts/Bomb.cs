@@ -9,11 +9,14 @@ public class Bomb : MonoBehaviour
     public GameObject bombArt;
     public GameObject bombOverlay;
     public GameObject craterArt;
+    public Rigidbody2D rb;
     public AudioManager am;
     public static GameManager gm;
+    public Kick kickScript;
     public ParticleSystem explosion;
     public float time;
     private bool exploded = false;
+    public int count = 1;
 
     private Coroutine c;
 
@@ -29,11 +32,16 @@ public class Bomb : MonoBehaviour
         exploded = false;
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
         am = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
+        rb = GetComponent<Rigidbody2D>();
+        kickScript = GetComponent<Kick>();
+        count = 1;
     }
 
     public void StartLevel()
     {
         c = StartCoroutine(Countdown());
+        kickScript.canMove = true;
+        count = 1;
     }
 
     public void GameOver()
@@ -60,6 +68,7 @@ public class Bomb : MonoBehaviour
     IEnumerator Defuse(Vector3 pos)
     {
         sparks.SetActive(false);
+        count = 0;
         float scale = gameObject.transform.localScale.x;
         float shrink = scale / 30;
         Vector3 dist = pos - gameObject.transform.position;
@@ -88,6 +97,8 @@ public class Bomb : MonoBehaviour
         bombOverlay.SetActive(false);
         sparks.SetActive(false);
         craterArt.SetActive(true);
+        rb.velocity = Vector3.zero;
+        kickScript.canMove = false;
         exploded = true;
         gm.GameOver();
         explosion.Play();

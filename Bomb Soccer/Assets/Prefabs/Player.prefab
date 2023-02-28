@@ -55,6 +55,10 @@ MonoBehaviour:
   fullSpeed: 5
   movement: {x: 0, y: 0}
   anim: {fileID: 7426239893637776310}
+  step1Audio: {fileID: 0}
+  step2Audio: {fileID: 0}
+  step3Audio: {fileID: 0}
+  step4Audio: {fileID: 0}
 --- !u!50 &2388246939864259946
 Rigidbody2D:
   serializedVersion: 4
@@ -209,6 +213,7 @@ GameObject:
   - component: {fileID: 7131371806719228114}
   - component: {fileID: 8415620056068039714}
   - component: {fileID: 7426239893637776310}
+  - component: {fileID: 2317902582446410817}
   m_Layer: 0
   m_Name: Player Art
   m_TagString: Untagged
@@ -303,6 +308,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2317902582446410817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4988488192432069980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05365691f57143708abdba05aa76113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
 --- !u!1 &8365623924463940492
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,6 +29,7 @@ public class Timer : MonoBehaviour
             three.SetActive(false);
             two.SetActive(false);
             one.SetActive(false);
+            gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
             gm.StartLevel();
         }
     }
