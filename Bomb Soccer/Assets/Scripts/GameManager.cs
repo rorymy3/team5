@@ -116,6 +116,15 @@ public class GameManager : MonoBehaviour
                 NextScene();
             }
         }
+        if(Input.GetKeyDown("r"))
+        {
+            checkRestart = false;
+            mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
+            mm.Stop("Death");
+            mm.Stop("Timer");
+            mm.Stop("Skip Timer");
+            RestartScene();
+        }
     }
 
     void RestartScene()
