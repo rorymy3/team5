@@ -495,10 +495,16 @@ MonoBehaviour:
   sparks: {fileID: 8817582006223294409}
   circle: {fileID: 4042899790341510411}
   bombArt: {fileID: 7112223327134704268}
+  arrowScaler: {fileID: 0}
   bombOverlay: {fileID: 8263549167054657087}
   craterArt: {fileID: 5159985590629714996}
+  rb: {fileID: 0}
+  am: {fileID: 0}
+  mm: {fileID: 0}
+  kickScript: {fileID: 0}
   explosion: {fileID: 167289740573369466}
   time: 10
+  count: 1
 --- !u!114 &120399022943362075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +517,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b57c7d50b4e4d3eb318995e45a5023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowScaler: {fileID: 1300666453994260602}
   kickRadius: 3
+  canMove: 0
   off: {r: 1, g: 1, b: 1, a: 0.27450982}
   on: {r: 1, g: 1, b: 1, a: 1}
   dist: {x: 0, y: 0, z: 0}

@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour {
         public SpriteRenderer sr;
         public float moveSpeed = 5f;
         public float halfSpeed = 3.535f;
+        private float slideMoveSpeed = 1f;
+        public float slideFullSpeed = 1f;
+        public float slideHalfSpeed = .6f;
         public float fullSpeed = 5f;
         public Vector2 movement;
         public Animator anim;
@@ -29,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
             sr = transform.Find("Player Art").gameObject.GetComponent<SpriteRenderer>();
             canMove = false;
             halfSpeed = Mathf.Sqrt((fullSpeed * fullSpeed)/2f);
+            slideHalfSpeed = Mathf.Sqrt((slideFullSpeed * slideFullSpeed)/2f);
         }
 
         public void StartLevel()
@@ -40,6 +44,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             canMove = false;
             anim.enabled = false;
+            rb.velocity = Vector3.zero;
         }
 
         public void WinLevel()
@@ -57,6 +62,7 @@ public class PlayerMovement : MonoBehaviour {
                 if(movement.x != 0 && movement.y != 0)
                 {
                     moveSpeed = halfSpeed;
+                    slideMoveSpeed = slideHalfSpeed;
                     anim.enabled = true;
                 }
                 else if(movement.x == 0 && movement.y == 0)
@@ -67,6 +73,7 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     anim.enabled = true;
                     moveSpeed = fullSpeed;
+                    slideMoveSpeed = slideFullSpeed;
                 }
                 MoveSoundUpdate();
 
@@ -137,6 +144,7 @@ public class PlayerMovement : MonoBehaviour {
                         rb.AddForce(movement * moveSpeed * 1000 * Time.fixedDeltaTime);
                         startSlide = false;
                     }
+                    rb.MovePosition(rb.position + movement * slideMoveSpeed * Time.fixedDeltaTime);
                 }
                 else
                 {

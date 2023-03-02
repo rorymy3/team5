@@ -10,6 +10,7 @@ public class Kick : MonoBehaviour
     private Collider2D kickZone;
     private GameObject arrow;
     private SpriteRenderer arrowArt;
+    public Transform arrowScaler;
     private Rigidbody2D rb;
 
     public float kickRadius = 3f;
@@ -38,6 +39,7 @@ public class Kick : MonoBehaviour
         arrowArt.enabled = false;
         rb = GetComponent<Rigidbody2D>();
         _audioSource = GetComponent<AudioSource> ();
+        arrowScaler.localScale = new Vector3(0.25f, 1f, 1f);
     }
 
     // Update is called once per frame
@@ -77,6 +79,7 @@ public class Kick : MonoBehaviour
                 kickSpeed = 0f;
                 buildKick = false;
                 arrowArt.enabled = false;
+                arrowScaler.localScale = new Vector3(0.25f, 1f, 1f);
             }
 
             if (!Input.GetButton("Fire1") && !Input.GetKey("space")) {
@@ -95,6 +98,8 @@ public class Kick : MonoBehaviour
         {
             kickTime++;
             kickSpeed = Mathf.Log(kickTime * 1.5f) * 50f;
+            float scale = Mathf.Log(kickTime) / 2f;
+            arrowScaler.localScale = new Vector3(scale, 1f, 1f);
         }
     }
 
