@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     public GameObject sparks;
+    public Transform playerTransform;
     public GameObject circle;
     public GameObject bombArt;
     public GameObject bombOverlay;
@@ -18,6 +19,7 @@ public class Bomb : MonoBehaviour
     public float time;
     private bool exploded = false;
     public int count = 1;
+    public bool closest = false;
 
     private Coroutine c;
 
@@ -31,6 +33,7 @@ public class Bomb : MonoBehaviour
         fullCircle = circle.transform.localScale;
         circle.SetActive(false);
         exploded = false;
+        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
         am = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
         mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
@@ -52,6 +55,11 @@ public class Bomb : MonoBehaviour
         {
             StopCoroutine(c);
         }
+    }
+
+    public float getDist()
+    {
+        return Mathf.Abs(transform.position.x - playerTransform.position.x) + Mathf.Abs(transform.position.y - playerTransform.position.y);
     }
 
     // Update is called once per frame
