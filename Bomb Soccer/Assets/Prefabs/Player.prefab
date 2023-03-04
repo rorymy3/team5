@@ -53,10 +53,13 @@ MonoBehaviour:
   sr: {fileID: 0}
   moveSpeed: 5
   halfSpeed: 3.535
+  slideFullSpeed: 1
+  slideHalfSpeed: 0.6
   fullSpeed: 6
   movement: {x: 0, y: 0}
   anim: {fileID: 7426239893637776310}
   canMove: 0
+  kicking: 0
   step1Audio: {fileID: 0}
   step2Audio: {fileID: 0}
   step3Audio: {fileID: 0}
@@ -216,6 +219,7 @@ GameObject:
   - component: {fileID: 8415620056068039714}
   - component: {fileID: 7426239893637776310}
   - component: {fileID: 2317902582446410817}
+  - component: {fileID: 6512248539319439417}
   m_Layer: 0
   m_Name: Player Art
   m_TagString: Untagged
@@ -323,6 +327,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 0}
+--- !u!114 &6512248539319439417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4988488192432069980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b311071cbbea34d7b928cbd967ec4878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2362148803761688744}
 --- !u!1 &8365623924463940492
 GameObject:
   m_ObjectHideFlags: 0
