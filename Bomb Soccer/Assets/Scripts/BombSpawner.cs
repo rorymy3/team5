@@ -42,10 +42,20 @@ public class BombSpawner : MonoBehaviour
     {
         bombTotal = gameObject.transform.childCount;
         bombCount = 0;
+        float closest = 0;
+        int closestIndex = 0;
         for(int i = 0; i < bombTotal; i++)
         {
             Bomb curr = gameObject.transform.GetChild(i).GetComponent<Bomb>();
             bombCount += curr.count;
+            float dist = curr.getDist();
+            if(dist <= closest || i == 0)
+            {
+                closest = dist;
+                gameObject.transform.GetChild(closestIndex).GetComponent<Bomb>().closest = false;
+                curr.closest = true;
+                closestIndex = i;
+            }
         }
         if(bombCount <= 0 && !won)
         {
