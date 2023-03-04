@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,12 +12,18 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public GameObject levelWin;
     public AudioManager mm;
+    public AudioManager am;
 
     public GameObject player;
     public GameObject bombSpawner;
     private AudioSource _audioSource;
-
     public GameObject defuseList;
+
+    public static bool GameisPaused = false;
+    public GameObject pauseMenuUI;
+    public AudioMixer mixer;
+    public static float volumeLevel = 1.0f;
+    private Slider sliderVolumeCtrl;
 
     bool checkRestart = false;
     bool checkNext = false;
@@ -31,11 +39,16 @@ public class GameManager : MonoBehaviour
         } else if (manager != this) {
             Destroy(gameObject);
         }
+
+
     }
 
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        // _audioSource.outputAudioMixerGroup = FindObjectOfType<AudioMixerGroup>();
+        // mixer = _audioSource.outputAudioMixerGroup.audioMixer;
+
         sceneNum = 0;
         player = GameObject.Find("Player");
         bombSpawner = GameObject.Find("Bomb Spawner");
@@ -46,6 +59,22 @@ public class GameManager : MonoBehaviour
         started = false;
         ended = false;
         checkNext = false;
+
+        // pause menu stuff
+        // AudioMixer mixer = GameObject.Find("PAUSEMENU");
+        //pauseMenuUI = GameObject.FindWithTag("PAUSEMENU");
+        //mixer = FindObjectOfType<AudioMixer>();
+        pauseMenuUI = GameObject.Find("Canvas").transform.Find("PAUSEMENU").gameObject;
+        pauseMenuUI.SetActive(false);
+        GameisPaused = false;
+
+        // Volume stuff
+        SetVolumeLevel (volumeLevel);
+        GameObject sliderTemp = GameObject.FindWithTag("PauseMenuSlider");
+        if (sliderTemp != null){
+            sliderVolumeCtrl = sliderTemp.GetComponent<Slider>();
+            sliderVolumeCtrl.value = volumeLevel;
+        }
     }
 
     public void StartLevel()
@@ -93,9 +122,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //delete this quit functionality when a Pause Menu is added
-        if (Input.GetKey("escape")){
-            QuitGame();
+        if (Input.GetKeyDown(KeyCode.Escape)){
+                if (GameisPaused){ Resume(); }
+                else{ Pause(); }
         }
 
         if(checkRestart)
@@ -127,9 +156,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void RestartScene()
+    void Pause(){
+            pauseMenuUI = GameObject.Find("Canvas").transform.Find("PAUSEMENU").gameObject;
+            pauseMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+            GameisPaused = true;
+
+            mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
+            mm.PauseAll();
+            am = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
+            am.PauseAll();
+    }
+
+    public void Resume(){
+            pauseMenuUI = GameObject.Find("Canvas").transform.Find("PAUSEMENU").gameObject;
+            pauseMenuUI.SetActive(false);
+            Time.timeScale = 1f;
+            GameisPaused = false;
+
+            mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
+            mm.PlayAll();
+            am = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
+            am.PlayAll();
+    }
+
+    public void SetVolumeLevel (float sliderValue){
+            //mixer = FindObjectOfType<AudioMixer>();
+            mixer.SetFloat("MusicVolume", Mathf.Log10 (sliderValue) * 20);
+            volumeLevel = sliderValue;
+    }
+
+    public void RestartScene()
     {
-        SceneManager.LoadScene(sceneNum);
+        Time.timeScale = 1f;
+        //SceneManager.LoadScene(sceneNum);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         started = false;
         ended = false;
     }

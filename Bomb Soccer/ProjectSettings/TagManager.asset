@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Defuse
   - Kick Zone
+  - PauseMenuSlider
   layers:
   - Default
   - TransparentFX
