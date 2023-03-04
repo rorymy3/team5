@@ -12,6 +12,7 @@ public class Kick : MonoBehaviour
     private SpriteRenderer arrowArt;
     public Transform arrowScaler;
     private Rigidbody2D rb;
+    private Bomb bombScript;
 
     public float kickRadius = 3f;
     private AudioSource _audioSource;
@@ -31,6 +32,7 @@ public class Kick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bombScript = GetComponent<Bomb>();
         col = GetComponent<Collider2D>();
         player = GameObject.Find("Player").transform;
         kickZone = player.Find("Kick Zone").gameObject.GetComponent<Collider2D>();
@@ -50,7 +52,7 @@ public class Kick : MonoBehaviour
             dist = transform.position - player.position;
             arrow.transform.right = -(player.position - transform.position);
 
-            if(col.IsTouching(kickZone))
+            if(col.IsTouching(kickZone) && bombScript.closest)
             {
                 ableToKick = true;
                 arrowArt.color = on;

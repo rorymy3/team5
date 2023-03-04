@@ -75,3 +75,4 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  audioMixerGroup: {fileID: 24300002, guid: 43b42b1877de1458a97a360286ef1695, type: 2}

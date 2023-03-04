@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
         private bool sliding = false;
         private bool startSlide = false;
         public bool canMove = false;
+        public bool kicking = false;
 
         // https://answers.unity.com/questions/52017/2-audio-sources-on-a-game-object-how-use-script-to.html
         public AudioSource step1Audio;
@@ -63,15 +64,20 @@ public class PlayerMovement : MonoBehaviour {
                 {
                     moveSpeed = halfSpeed;
                     slideMoveSpeed = slideHalfSpeed;
-                    anim.enabled = true;
+                    if(!kicking)
+                    {
+                        anim.Play("RightWalk");
+                    }
                 }
                 else if(movement.x == 0 && movement.y == 0)
                 {
-                    anim.enabled = false;
+                    // Pause animation
                 }
                 else
-                {
-                    anim.enabled = true;
+                {   if(!kicking)
+                    {
+                        anim.Play("RightWalk");
+                    }
                     moveSpeed = fullSpeed;
                     slideMoveSpeed = slideFullSpeed;
                 }
@@ -79,31 +85,39 @@ public class PlayerMovement : MonoBehaviour {
 
                 if(movement.x > 0)
                 {
-                    anim.Play("RightWalk");
+                    if(!kicking)
+                    {
+                        anim.Play("RightWalk");
+                    }
                     sr.flipX = false;
                 }
                 if(movement.x < 0)
                 {
-                    anim.Play("RightWalk");
+                    if(!kicking)
+                    {
+                        anim.Play("RightWalk");
+                    }
                     sr.flipX = true;
                 }
 
                 if(Input.GetButtonDown("Fire1") || Input.GetKeyDown("space"))
                 {
                     sliding = true;
+                    kicking = true;
                     startSlide = true;
+                    anim.Play("Kick Draw");
                 }
                 if(Input.GetButtonUp("Fire1") || Input.GetKeyUp("space"))
                 {
                     sliding = false;
                     startSlide = false;
                     rb.velocity = Vector3.zero;
-                    //_audioSource.Play();
+                    anim.Play("Kick Through");
                 }
             }
             else
             {
-                anim.enabled = false;
+                // Idle Animation
             }
         }
 
