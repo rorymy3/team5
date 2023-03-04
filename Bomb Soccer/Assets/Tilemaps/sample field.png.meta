@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -1504,10 +1504,10 @@ TextureImporter:
       sample field_0: -2038110562
       sample field_6: -702311339
       sample field_9: 639362738
-      sample field_11: -2127482894
       sample field_45: 1465671305
-      sample field_15: -1585213815
       sample field_58: -516513711
+      sample field_15: -1585213815
+      sample field_11: -2127482894
       sample field_54: 770491611
       sample field_7: -1391319994
       sample field_30: -1394525797
