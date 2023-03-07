@@ -46,12 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Timer
-    clip: {fileID: 8300000, guid: 9cb7ec29f460b4d2ba44a9a675639c60, type: 3}
+    clip: {fileID: 8300000, guid: 98cf19049a4104cc68e6d33b61ba06ff, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: Skip Timer
-    clip: {fileID: 8300000, guid: 2154463447c094c598c23f458c2abf78, type: 3}
+    clip: {fileID: 8300000, guid: 2e8ee347ae4cf462ca88df8627de5677, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
