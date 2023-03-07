@@ -51,8 +51,8 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
   - name: Success
-    clip: {fileID: 8300000, guid: bccd231327a914ee284a2f2c48086cbd, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 994a93a77dd7849f69be0ad4fa80bd65, type: 3}
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: Step1
