@@ -44,7 +44,8 @@ public class PlayerMovement : MonoBehaviour {
         public void GameOver()
         {
             canMove = false;
-            anim.enabled = false;
+            anim.Play("Fall");
+            // anim.enabled = false;
             rb.velocity = Vector3.zero;
         }
 
@@ -120,7 +121,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             else
             {
-                anim.Play("Idle");
+                //anim.Play("Idle");
             }
         }
 
