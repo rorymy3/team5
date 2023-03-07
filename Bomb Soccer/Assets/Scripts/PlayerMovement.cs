@@ -71,7 +71,10 @@ public class PlayerMovement : MonoBehaviour {
                 }
                 else if(movement.x == 0 && movement.y == 0)
                 {
-                    // Pause animation
+                    if(!kicking)
+                    {
+                        anim.Play("Idle");
+                    }
                 }
                 else
                 {   if(!kicking)
@@ -117,7 +120,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             else
             {
-                // Idle Animation
+                anim.Play("Idle");
             }
         }
 
