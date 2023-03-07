@@ -109,6 +109,7 @@ public class Kick : MonoBehaviour
     {
         // Debug.Log("Kicked with speed of " + kickSpeed);
         rb.AddForce(dist * kickSpeed, ForceMode2D.Impulse);
-        _audioSource.Play();
+        GameObject.Find("Audio Manager").GetComponent<AudioManager>().Play("Kick");
+        //_audioSource.Play();
     }
 }

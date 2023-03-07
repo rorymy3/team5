@@ -62,7 +62,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Death
     clip: {fileID: 8300000, guid: 7662b190f893b43e3afb9e253432c39c, type: 3}
-    volume: 1
+    volume: 0
     pitch: 1
     source: {fileID: 0}
   audioMixerGroup: {fileID: 24300002, guid: 43b42b1877de1458a97a360286ef1695, type: 2}

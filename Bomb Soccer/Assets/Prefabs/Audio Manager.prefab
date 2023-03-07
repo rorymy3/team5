@@ -47,7 +47,7 @@ MonoBehaviour:
   sounds:
   - name: Explosion
     clip: {fileID: 8300000, guid: f6332474593184739a65f65bb1c9fcdb, type: 3}
-    volume: 1
+    volume: 0.2
     pitch: 1
     source: {fileID: 0}
   - name: Success
@@ -73,6 +73,11 @@ MonoBehaviour:
   - name: Step4
     clip: {fileID: 8300000, guid: 61ac42011ac8745a295839633666a8d7, type: 3}
     volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Kick
+    clip: {fileID: 8300000, guid: 168f3eaf6a90c4b72a468a873f745dbf, type: 3}
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   audioMixerGroup: {fileID: 24300002, guid: 43b42b1877de1458a97a360286ef1695, type: 2}
