@@ -86,7 +86,14 @@ public class GameManager : MonoBehaviour
             bombSpawner = GameObject.Find("Bomb Spawner");
             started = true;
             player.GetComponent<PlayerMovement>().StartLevel();
-            bombSpawner.GetComponent<BombSpawner>().StartLevel();
+            if(SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                bombSpawner.GetComponent<BombSpawnerTutorial>().StartLevel();
+            }
+            else
+            {
+                bombSpawner.GetComponent<BombSpawner>().StartLevel();
+            }
         }
     }
 
@@ -100,7 +107,14 @@ public class GameManager : MonoBehaviour
             player = GameObject.Find("Player");
             bombSpawner = GameObject.Find("Bomb Spawner");
             player.GetComponent<PlayerMovement>().GameOver();
-            bombSpawner.GetComponent<BombSpawner>().GameOver();
+            if(SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                bombSpawner.GetComponent<BombSpawnerTutorial>().GameOver();
+            }
+            else
+            {
+                bombSpawner.GetComponent<BombSpawner>().GameOver();
+            }
             checkRestart = true;
         }
     }
@@ -201,7 +215,7 @@ public class GameManager : MonoBehaviour
         ended = false;
         checkNext = false;
         sceneNum++;
-        SceneManager.LoadScene(sceneNum);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame(){

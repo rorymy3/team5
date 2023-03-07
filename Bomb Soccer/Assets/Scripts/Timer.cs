@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -22,7 +23,10 @@ public class Timer : MonoBehaviour
         cd = StartCoroutine(LevelCountdown());
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
         mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
-        mm.Play("Timer");
+        if(SceneManager.GetActiveScene().name != "Tutorial")
+        {
+            mm.Play("Timer");
+        }
     }
 
     // Update is called once per frame
@@ -33,7 +37,10 @@ public class Timer : MonoBehaviour
             skipped = true;
             mm = GameObject.Find("Music Manager").GetComponent<AudioManager>();
             mm.Stop("Timer");
-            mm.Play("Skip Timer");
+            if(SceneManager.GetActiveScene().name != "Tutorial")
+            {
+                mm.Play("Skip Timer");
+            }
             StopCoroutine(cd);
             three.SetActive(false);
             two.SetActive(false);
